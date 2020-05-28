@@ -1,15 +1,16 @@
 from rest_framework import serializers
-from wingtel.usage.models import DataUsageRecord, VoiceUsageRecord
+from wingtel.usage.models import UsageRecord
 
+class UsageSerializer(serializers.Serializer):
+    att_subscription_id = serializers.CharField()
+    sprint_subscription_id = serializers.CharField()
+    usage_type = serializers.CharField()
+    used_units = serializers.FloatField()
+    price = serializers.FloatField()
+    price_exceed = serializers.FloatField()
 
-class DataUsageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = DataUsageRecord
-        fields = "__all__"
-
-class VoiceUsageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = VoiceUsageRecord
-        fields = "__all__"
+class UsageSumSerializer(serializers.Serializer):
+    att_subscription_id = serializers.CharField()
+    sprint_subscription_id = serializers.CharField()
+    total_price = serializers.FloatField()
+    total_usage = serializers.FloatField()
